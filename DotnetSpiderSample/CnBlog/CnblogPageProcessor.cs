@@ -29,16 +29,16 @@ namespace DotnetSpiderSample.CnBlog
             else if (Regex.IsMatch(page.TargetUrl, "https://www.cnblogs.com/[\\s\\S]+/p/\\d+.html"))
             {
                 ///获取标题和作者
-                string titiles = page.Selectable().Select(Selectors.XPath("//title")).GetValue();
+                string titlestr = page.Selectable().Select(Selectors.XPath("//title")).GetValue();
 
-                string[] sss = titiles.Split(new string[] { " - " }, StringSplitOptions.RemoveEmptyEntries);
+                string[] temparray = titlestr.Split(new string[] { " - " }, StringSplitOptions.RemoveEmptyEntries);
 
-                if (sss.Length == 3)
+                if (temparray.Length == 3)
                 {
                     var cnblog = new CnblogEntity();
                     cnblog.Url = page.TargetUrl;
-                    cnblog.Title = sss[0];
-                    cnblog.Author = sss[1];
+                    cnblog.Title = temparray[0];
+                    cnblog.Author = temparray[1];
                     cnblog.Conter = page.Selectable().Select(Selectors.XPath(".//div[@id='cnblogs_post_body']")).GetValue();
                     page.AddResultItem("Result", cnblog);
                 }

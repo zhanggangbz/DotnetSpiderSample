@@ -14,7 +14,7 @@ namespace DotnetSpiderSample.CnBlog
         protected override void OnInit(params string[] arguments)
         {
             ///加入前五页的列表页
-            for (int i = 1; i < 5; i++)
+            for (int i = 1; i < 2; i++)
             {
                 AddRequest(new Request(string.Format("https://www.cnblogs.com/p{0}", i)));
             }
