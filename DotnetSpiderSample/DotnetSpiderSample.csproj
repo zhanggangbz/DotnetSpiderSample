@@ -216,11 +216,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CnBlog\CnblogEntity.cs" />
+    <Compile Include="CnBlog\CnblogPageProcessor.cs" />
+    <Compile Include="CnBlog\CnblogSpider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="CnBlog\README.md" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
