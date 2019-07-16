@@ -10,6 +10,7 @@ namespace DotnetSpiderSample
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
