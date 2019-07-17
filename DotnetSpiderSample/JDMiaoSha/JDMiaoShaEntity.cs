@@ -9,8 +9,8 @@ namespace DotnetSpiderSample.JDMiaoSha
         /// <summary>
         /// 物品ID
         /// </summary>
-        [Column(50)]
-        [Unique]
+        [Column(Length = 50,DataType = DataType.String)]
+        [Primary]
         public string Id { get; set; }
 
         /// <summary>
