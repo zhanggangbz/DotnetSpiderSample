@@ -219,13 +219,20 @@
     <Compile Include="CnBlog\CnblogEntity.cs" />
     <Compile Include="CnBlog\CnblogPageProcessor.cs" />
     <Compile Include="CnBlog\CnblogSpider.cs" />
+    <Compile Include="Common\BaseFunction.cs" />
+    <Compile Include="Common\BaseValue.cs" />
+    <Compile Include="JDMiaoSha\JDMiaoShaEntity.cs" />
+    <Compile Include="JDMiaoSha\JDMiaoShaPageProcessor.cs" />
+    <Compile Include="JDMiaoSha\JDMiaoShaSpider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="CnBlog\README.md" />
+    <None Include="JDMiaoSha\Readme.md" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

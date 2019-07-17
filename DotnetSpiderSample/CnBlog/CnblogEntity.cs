@@ -16,6 +16,7 @@ namespace DotnetSpiderSample.CnBlog
         /// 主键
         /// </summary>
         [Column(200)]
+        [Primary]
         public string Url { get; set; }
 
         /// <summary>
