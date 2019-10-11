@@ -18,6 +18,13 @@ namespace DotnetSpiderSample.O5I5JSecondHouse
         [Primary]
         [Column(Length = 100)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// 小区ID
+        /// </summary>
+        [Column]
+        public string XiaoQuId { get; set; }
+
         /// <summary>
         /// URL
         /// </summary>

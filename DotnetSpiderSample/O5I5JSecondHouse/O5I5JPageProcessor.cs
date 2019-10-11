@@ -24,7 +24,8 @@ namespace DotnetSpiderSample.O5I5JSecondHouse
                 var totalCnblogElements = page.Selectable().SelectList(Selectors.XPath("//div[@class='list-con-box']/ul[@class='pList']/li/div[@class='listCon']/div[@class='listX']/div[@class='jia']/a")).Links().GetValues();
                 foreach (var cnblogElement in totalCnblogElements)
                 {
-                    page.AddTargetRequest(BaseFunction.CreateRequest(cnblogElement));
+                    var request = BaseFunction.CreateRequest(cnblogElement);
+                    page.AddTargetRequest(request);
                 }
                 Logger?.LogInformation($"{page.TargetUrl}页面获取到小区连接{ totalCnblogElements.ToList().Count }个");
 
@@ -98,6 +99,26 @@ namespace DotnetSpiderSample.O5I5JSecondHouse
                     Console.WriteLine(ex);
                 }
 
+                string xiaoquID = "";
+
+                Regex regex = new Regex("\\d+");
+
+                var matchs = regex.Matches(page.TargetUrl);
+
+                if(matchs.Count > 0)
+                {
+                    foreach(Match item in matchs)
+                    {
+                        if(item.Value.Length>5)
+                        {
+                            xiaoquID = item.Value;
+                            break;
+                        }
+                    }
+                }
+
+                
+
                 //获取每个房子的信息
                 var totalFangZiElements = page.Selectable().SelectList(Selectors.XPath("//div[@class='list-con-box'][1]/ul/li/div[@class='listCon']")).Nodes();
 
@@ -111,7 +132,7 @@ namespace DotnetSpiderSample.O5I5JSecondHouse
                         house.Title = fangElement.Select(Selectors.XPath(".//h3[@class='listTit']/a/text()")).GetValue();
                         house.Url = fangElement.Select(Selectors.XPath(".//h3[@class='listTit']/a/@href")).GetValue();
                         house.Id = house.Url.Substring(house.Url.LastIndexOf('/') + 1, house.Url.LastIndexOf('.') - house.Url.LastIndexOf('/') - 1);
-
+                        house.XiaoQuId = xiaoquID;
                         string huxmj = fangElement.Select(Selectors.XPath(".//div[@class='listX']/p[1]")).GetValue();
                         string[] tt = huxmj.Split('·');
                         if (tt.Length > 3)
