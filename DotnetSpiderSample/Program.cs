@@ -13,11 +13,21 @@ namespace DotnetSpiderSample
             //var spider = new CnBlog.CnblogSpider();
             //var spider = new JDMiaoSha.JDMiaoShaSpider();
 
-            var spider = new O5I5JSecondHouse.O5I5JSpider();
+            try
+            {
+                var spider = new O5I5JSecondHouse.O5I5JSpider();
 
-            spider.Run();
-
-            Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                while (true)
+                {
+                    spider.Run();
+                    Console.WriteLine("End : " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    System.Threading.Thread.Sleep(1000*60*60*5);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             Console.ReadKey();
         }

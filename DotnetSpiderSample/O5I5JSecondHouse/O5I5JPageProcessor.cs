@@ -3,6 +3,7 @@ using DotnetSpider.Core.Processor;
 using DotnetSpider.Downloader;
 using DotnetSpider.Extraction;
 using DotnetSpiderSample.Common;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace DotnetSpiderSample.O5I5JSecondHouse
                 {
                     page.AddTargetRequest(BaseFunction.CreateRequest(cnblogElement));
                 }
+                Logger?.LogInformation($"{page.TargetUrl}页面获取到小区连接{ totalCnblogElements.ToList().Count }个");
 
                 //获取每个小区的信息
                 var totalXiaoQuElements = page.Selectable().SelectList(Selectors.XPath("//div[@class='list-con-box']/ul[@class='pList']/li")).Nodes();
@@ -49,7 +51,6 @@ namespace DotnetSpiderSample.O5I5JSecondHouse
                         xiaoqu.Region = page.Request.Properties["diqu"];
                         xiaoqu.Id = xiaoqu.Url.Substring(xiaoqu.Url.LastIndexOf('/') + 1, xiaoqu.Url.LastIndexOf('.') - xiaoqu.Url.LastIndexOf('/') - 1);
                         xiaoqu.Url = xiaoquElement.Select(Selectors.XPath(".//div[@class='listCon']/div/div/a/@href")).GetValue();
-                        System.IO.File.AppendAllText("xxxx.txt", string.Format("{4}\t{0}\t{1}\t{2}\t{3}\n", xiaoqu.Id, xiaoqu.Name, xiaoqu.Url, xiaoqu.Region,DateTime.Now.ToString("HH:mm:ss.fff")));
                         xiaoquList.Add(xiaoqu);
 
                         var xiaoquPrice = new O5I5JXiaoQuPriceEntity();
@@ -65,6 +66,7 @@ namespace DotnetSpiderSample.O5I5JSecondHouse
                         Console.WriteLine(ex);
                     }
                 }
+                Logger?.LogInformation($"{page.TargetUrl}页面获取到小区信息{xiaoquList.Count}个，获取到小区价格信息{xiaoquPriceList.Count}个");
 
                 page.AddResultItem("Result", xiaoquList);
                 page.AddResultItem("Result1", xiaoquPriceList);
@@ -87,6 +89,8 @@ namespace DotnetSpiderSample.O5I5JSecondHouse
                                 page.AddTargetRequest(BaseFunction.CreateRequest(pageElements[i].Links().GetValue()));
                             }
                         }
+
+                        Logger?.LogInformation($"{page.TargetUrl}页面获取分页信息{pageElements.Count-2}个");
                     }
                 }
                 catch(Exception ex)
@@ -152,6 +156,8 @@ namespace DotnetSpiderSample.O5I5JSecondHouse
                         Console.WriteLine(ex);
                     }
                 }
+
+                Logger?.LogInformation($"{page.TargetUrl}页面获取到二手房信息{houseList.Count}个，获取到二手房价格信息{housePriceList.Count}个");
 
                 page.AddResultItem("Result2", houseList);
 

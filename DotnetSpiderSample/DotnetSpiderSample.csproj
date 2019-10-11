@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -55,6 +56,9 @@
     <Compile Include="JDMiaoSha\JDMiaoShaEntity.cs" />
     <Compile Include="JDMiaoSha\JDMiaoShaPageProcessor.cs" />
     <Compile Include="JDMiaoSha\JDMiaoShaSpider.cs" />
+    <Compile Include="O5I5JSecondHouse\BeforeRequestAddCookie.cs" />
+    <Compile Include="O5I5JSecondHouse\HttpCookieHelper.cs" />
+    <Compile Include="O5I5JSecondHouse\HttpHelper.cs" />
     <Compile Include="O5I5JSecondHouse\O5I5JHouseEntity.cs" />
     <Compile Include="O5I5JSecondHouse\O5I5JPageProcessor.cs" />
     <Compile Include="O5I5JSecondHouse\O5I5JSpider.cs" />
