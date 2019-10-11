@@ -141,6 +141,11 @@ namespace DotnetSpider.Core
 				StartTime = DateTime.Now;
 				Execute(arguments);
 			}
+            catch(Exception ex)
+            {
+                Logger.LogError(ex.Message);
+                Logger.LogError(ex.StackTrace);
+            }
 			finally
 			{
 				ExitTime = DateTime.Now;

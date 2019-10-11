@@ -19,9 +19,20 @@ namespace DotnetSpiderSample
 
                 while (true)
                 {
-                    spider.Run();
-                    Console.WriteLine("End : " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                    System.Threading.Thread.Sleep(1000*60*60*5);
+                    if(DateTime.Now.Hour > 8 && DateTime.Now.Hour < 22)
+                    {
+                        spider.StartGetCookie();
+                        spider.Run();
+                        spider.StopGetCookie();
+
+                        Console.WriteLine("End : " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        System.Threading.Thread.Sleep(1000 * 60 * 60 * 5);
+                    }
+                    else
+                    {
+                        Console.WriteLine("现在是晚上");
+                        System.Threading.Thread.Sleep(1000 * 60 * 60);
+                    }
                 }
             }
             catch(Exception ex)

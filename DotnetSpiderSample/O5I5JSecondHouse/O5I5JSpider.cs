@@ -18,11 +18,7 @@ namespace DotnetSpiderSample.O5I5JSecondHouse
 
         protected override void OnInit(params string[] arguments)
         {
-            GetCookie();
-
             timer.Elapsed += Timer_Elapsed;
-
-            timer.Start();
 
             ///加入前五页的列表页
             InitPageWC();
@@ -39,8 +35,18 @@ namespace DotnetSpiderSample.O5I5JSecondHouse
 
             //数据存储方式，使用数据库存储，并在数据存在的时候更新旧数据
             AddPipeline(new MySqlEntityPipeline(Common.BaseValue.MySqlConnectStr, PipelineMode.InsertNewAndUpdateOld));
+        }
 
+        public void StartGetCookie()
+        {
+            GetCookie();
 
+            timer.Start();
+        }
+
+        public void StopGetCookie()
+        {
+            timer.Stop();
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
