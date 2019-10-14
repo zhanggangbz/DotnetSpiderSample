@@ -15,18 +15,20 @@ namespace DotnetSpiderSample
 
             try
             {
-                var spider = new O5I5JSecondHouse.O5I5JSpider();
-
                 while (true)
                 {
-                    if(DateTime.Now.Hour > 8 && DateTime.Now.Hour < 22)
+                    if (DateTime.Now.Hour > 8 && DateTime.Now.Hour < 22)
                     {
-                        spider.StartGetCookie();
-                        spider.Run();
-                        spider.StopGetCookie();
+                        using (var spider = new LianJiaSecondHouse.LianJiaSpider())
+                        //using (var spider = new O5I5JSecondHouse.O5I5JSpider())
+                        {
+                            //spider.StartGetCookie();
+                            spider.Run();
+                            //spider.StopGetCookie();
+                        }
 
                         Console.WriteLine("End : " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                        System.Threading.Thread.Sleep(1000 * 60 * 60 * 5);
+                        System.Threading.Thread.Sleep(1000 * 60 * 60 * 4);
                     }
                     else
                     {
@@ -35,11 +37,15 @@ namespace DotnetSpiderSample
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
 
+            Console.ReadKey();
+            Console.ReadKey();
+            Console.ReadKey();
+            Console.ReadKey();
             Console.ReadKey();
         }
     }

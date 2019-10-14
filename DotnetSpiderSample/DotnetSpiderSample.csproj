@@ -56,6 +56,11 @@
     <Compile Include="JDMiaoSha\JDMiaoShaEntity.cs" />
     <Compile Include="JDMiaoSha\JDMiaoShaPageProcessor.cs" />
     <Compile Include="JDMiaoSha\JDMiaoShaSpider.cs" />
+    <Compile Include="LianJiaSecondHouse\BeforeRequestAddCookie.cs" />
+    <Compile Include="LianJiaSecondHouse\LianJiaHouseEntity.cs" />
+    <Compile Include="LianJiaSecondHouse\LianJiaPageProcessor.cs" />
+    <Compile Include="LianJiaSecondHouse\LianJiaSpider.cs" />
+    <Compile Include="LianJiaSecondHouse\LianJiaXiaoQuEntity.cs" />
     <Compile Include="O5I5JSecondHouse\BeforeRequestAddCookie.cs" />
     <Compile Include="O5I5JSecondHouse\HttpCookieHelper.cs" />
     <Compile Include="O5I5JSecondHouse\HttpHelper.cs" />

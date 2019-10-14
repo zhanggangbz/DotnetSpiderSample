@@ -10,9 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace DotnetSpiderSample.O5I5JSecondHouse
+namespace DotnetSpiderSample.LianJiaSecondHouse
 {
-    class O5I5JSpider : Spider
+    class LianJiaSpider : Spider
     {
         Timer timer = new Timer(1000*60*10);
 
@@ -23,15 +23,15 @@ namespace DotnetSpiderSample.O5I5JSecondHouse
             ///加入前五页的列表页
             InitPageWC();
 
-            this.Downloader.AddBeforeDownloadHandler(new BeforeRequestAddCookie());
+            //this.Downloader.AddBeforeDownloadHandler(new BeforeRequestAddCookie());
 
             ///在页面没有解析出任何内容的情况下，依旧处理其获取到的目标连接
             SkipTargetRequestsWhenResultIsEmpty = false;
             //爬取每个请求的间隔时间
-            SleepTime = 20000;
+            SleepTime = 30000;
 
             //页面内容分析器
-            AddPageProcessor(new O5I5JPageProcessor());
+            AddPageProcessor(new LianJiaPageProcessor());
 
             //数据存储方式，使用数据库存储，并在数据存在的时候更新旧数据
             AddPipeline(new MySqlEntityPipeline(Common.BaseValue.MySqlConnectStr, PipelineMode.InsertNewAndUpdateOld));
@@ -58,27 +58,25 @@ namespace DotnetSpiderSample.O5I5JSecondHouse
         {
             for (int i = 1; i < 3; i++)
             {
-                var request = BaseFunction.CreateRequest(string.Format("https://hz.5i5j.com/xiaoqu/wuchang/n{0}/", i));
-                request.AddProperty("diqu", "五常");
+                var request = BaseFunction.CreateRequest(string.Format("https://hz.lianjia.com/xiaoqu/feicuicheng1/pg{0}/", i));
+                request.AddProperty("diqu", "翡翠城");
                 AddRequest(request);
             }
-            for (int i = 1; i < 2; i++)
+            for (int i = 1; i < 7; i++)
             {
-                var request = BaseFunction.CreateRequest(string.Format("https://hz.5i5j.com/xiaoqu/weilaikejicheng/n{0}/", i));
-                request.AddProperty("diqu", "五常");
+                var request = BaseFunction.CreateRequest(string.Format("https://hz.lianjia.com/xiaoqu/weilaikejicheng/pg{0}/", i));
+                request.AddProperty("diqu", "未来科技城");
                 AddRequest(request);
             }
             for (int i = 1; i < 4; i++)
             {
-                var request = BaseFunction.CreateRequest(string.Format("https://hz.5i5j.com/xiaoqu/xianlin/n{0}/", i));
+                var request = BaseFunction.CreateRequest(string.Format("https://hz.lianjia.com/xiaoqu/xianlin1/pg{0}/", i));
                 request.AddProperty("diqu", "闲林");
                 AddRequest(request);
             }
-            Dictionary<string, object> properties3 = new Dictionary<string, object>();
-            properties3.Add("diqu", "西溪");
-            for (int i = 1; i < 2; i++)
+            for (int i = 1; i < 5; i++)
             {
-                var request = BaseFunction.CreateRequest(string.Format("https://hz.5i5j.com/xiaoqu/xixi/n{0}/", i));
+                var request = BaseFunction.CreateRequest(string.Format("https://hz.lianjia.com/xiaoqu/xixi/pg{0}/", i));
                 request.AddProperty("diqu", "西溪");
                 AddRequest(request);
             }
