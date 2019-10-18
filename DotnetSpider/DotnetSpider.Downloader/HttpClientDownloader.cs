@@ -40,7 +40,10 @@ namespace DotnetSpider.Downloader
 				Client = allowAutoRedirect
 					? new HttpClient(new GlobalRedirectHandler(handler), true)
 					: new HttpClient(handler, true);
-			}
+
+                Client.Timeout = new TimeSpan(0, 0, 0, 5000);
+
+            }
 
 			public void Dispose()
 			{

@@ -120,11 +120,21 @@ namespace DotnetSpiderSample.LianJiaSecondHouse
                         house.Id = house.Url.Substring(house.Url.LastIndexOf('/') + 1, house.Url.LastIndexOf('.') - house.Url.LastIndexOf('/') - 1);
                         house.XiaoQuId = xiaoquID;
                         string huxmj = fangElement.Select(Selectors.XPath(".//div[@class='address']/div[@class='houseInfo']")).GetValue();
-                        string[] tt = huxmj.Split('|');
-                        if (tt.Length > 3)
+                        if (huxmj.Length > 3)
                         {
-                            house.MianJi = BaseFunction.TryParseDecimal(tt[2].Replace("平", "").Replace("米", "").Trim());
-                            house.HuXing = tt[1].Trim();
+                            Regex mianjiregex = new Regex("\\d+[\\.\\d+]*平米");
+                            var mianjimatch = mianjiregex.Match(huxmj);
+                            if (mianjimatch!=null)
+                            {
+                                house.MianJi = BaseFunction.TryParseDecimal(mianjimatch.Value.Replace("平", "").Replace("米", "").Trim());
+                            }
+
+                            Regex huxingregex = new Regex("\\d+室[\\d+厅]*");
+                            var huxingmatch = huxingregex.Match(huxmj);
+                            if (huxingmatch != null)
+                            {
+                                house.HuXing = huxingmatch.Value;
+                            }
                         }
 
                         //huxmj = fangElement.Select(Selectors.XPath(".//div[@class='listX']/p[3]")).GetValue();

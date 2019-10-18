@@ -19,12 +19,12 @@ namespace DotnetSpiderSample
                 {
                     if (DateTime.Now.Hour > 8 && DateTime.Now.Hour < 22)
                     {
-                        using (var spider = new LianJiaSecondHouse.LianJiaSpider())
-                        //using (var spider = new O5I5JSecondHouse.O5I5JSpider())
+                        //using (var spider = new LianJiaSecondHouse.LianJiaSpider())
+                        using (var spider = new O5I5JSecondHouse.O5I5JSpider())
                         {
-                            //spider.StartGetCookie();
+                            spider.StartGetCookie();
                             spider.Run();
-                            //spider.StopGetCookie();
+                            spider.StopGetCookie();
                         }
 
                         Console.WriteLine("End : " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
